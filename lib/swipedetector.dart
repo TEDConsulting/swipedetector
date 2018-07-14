@@ -40,7 +40,10 @@ class SwipeDetector extends StatelessWidget {
       this.onSwipeDown,
       this.onSwipeLeft,
       this.onSwipeRight,
-      this.swipeConfiguration});
+      SwipeConfiguration swipeConfiguration})
+      : this.swipeConfiguration = swipeConfiguration == null
+            ? SwipeConfiguration()
+            : swipeConfiguration;
 
   @override
   Widget build(BuildContext context) {
