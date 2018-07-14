@@ -1,6 +1,6 @@
-# example
+# swipedetector
 
-A new Flutter project.
+A Flutter package to detect up, down, left, right swipes.
 
 ## Getting Started
 
