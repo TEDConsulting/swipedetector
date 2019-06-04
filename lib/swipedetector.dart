@@ -4,47 +4,26 @@ import 'package:flutter/material.dart';
 
 class SwipeConfiguration {
   //Vertical swipe configuration options
-  double verticalSwipeMaxWidthThreshold = 50.0;
-  double verticalSwipeMinDisplacement = 100.0;
-  double verticalSwipeMinVelocity = 300.0;
+  final double verticalSwipeMaxWidthThreshold;
+  final double verticalSwipeMinDisplacement;
+  final double verticalSwipeMinVelocity;
 
   //Horizontal swipe configuration options
-  double horizontalSwipeMaxHeightThreshold = 50.0;
-  double horizontalSwipeMinDisplacement = 100.0;
-  double horizontalSwipeMinVelocity = 300.0;
+  final double horizontalSwipeMaxHeightThreshold;
+  final double horizontalSwipeMinDisplacement;
+  final double horizontalSwipeMinVelocity;
+
+  final HitTestBehavior behavior;
 
   SwipeConfiguration({
-    double verticalSwipeMaxWidthThreshold,
-    double verticalSwipeMinDisplacement,
-    double verticalSwipeMinVelocity,
-    double horizontalSwipeMaxHeightThreshold,
-    double horizontalSwipeMinDisplacement,
-    double horizontalSwipeMinVelocity,
-  }) {
-    if (verticalSwipeMaxWidthThreshold != null) {
-      this.verticalSwipeMaxWidthThreshold = verticalSwipeMaxWidthThreshold;
-    }
-
-    if (verticalSwipeMinDisplacement != null) {
-      this.verticalSwipeMinDisplacement = verticalSwipeMinDisplacement;
-    }
-
-    if (verticalSwipeMinVelocity != null) {
-      this.verticalSwipeMinVelocity = verticalSwipeMinVelocity;
-    }
-
-    if (horizontalSwipeMaxHeightThreshold != null) {
-      this.horizontalSwipeMaxHeightThreshold = horizontalSwipeMaxHeightThreshold;
-    }
-
-    if (horizontalSwipeMinDisplacement != null) {
-      this.horizontalSwipeMinDisplacement = horizontalSwipeMinDisplacement;
-    }
-
-    if (horizontalSwipeMinVelocity != null) {
-      this.horizontalSwipeMinVelocity = horizontalSwipeMinVelocity;
-    }
-  }
+    this.verticalSwipeMaxWidthThreshold = 50.0,
+    this.verticalSwipeMinDisplacement = 100.0,
+    this.verticalSwipeMinVelocity = 300.0,
+    this.horizontalSwipeMaxHeightThreshold = 50.0,
+    this.horizontalSwipeMinDisplacement = 100.0,
+    this.horizontalSwipeMinVelocity = 300.0,
+    this.behavior,
+  });
 }
 
 class SwipeDetector extends StatelessWidget {
@@ -78,6 +57,7 @@ class SwipeDetector extends StatelessWidget {
 
     return GestureDetector(
       child: child,
+      behavior: swipeConfiguration.behavior,
       onVerticalDragStart: (dragDetails) {
         startVerticalDragDetails = dragDetails;
       },
