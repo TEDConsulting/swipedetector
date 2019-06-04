@@ -39,7 +39,7 @@ SwipeDetector(
 ```
 
 ### Configuration Options
-In case you don't require the default configuration and want to tune the sensitivity of swipes, you can pass your own configuration values.
+In case you don't require the default configuration and want to tune the sensitivity of swipes or gesture behavior, you can pass your own configuration values.
 
 ```dart
 SwipeDetector(
@@ -55,7 +55,8 @@ SwipeDetector(
       verticalSwipeMaxWidthThreshold:100.0,
       horizontalSwipeMaxHeightThreshold: 50.0,
       horizontalSwipeMinDisplacement:50.0,
-      horizontalSwipeMinVelocity: 200.0),
+      horizontalSwipeMinVelocity: 200.0,
+      behavior: HitTestBehavior.opaque),
     ),
 )
 ```
@@ -154,7 +155,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       verticalSwipeMaxWidthThreshold:100.0,
                       horizontalSwipeMaxHeightThreshold: 50.0,
                       horizontalSwipeMinDisplacement:50.0,
-                      horizontalSwipeMinVelocity: 200.0),
+                      horizontalSwipeMinVelocity: 200.0,
+                      behavior: HitTestBehavior.opaque),
                 ),
               )
             ],
