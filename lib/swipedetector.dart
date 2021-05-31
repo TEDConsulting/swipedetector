@@ -14,12 +14,12 @@ class SwipeConfiguration {
   double horizontalSwipeMinVelocity = 300.0;
 
   SwipeConfiguration({
-    double verticalSwipeMaxWidthThreshold,
-    double verticalSwipeMinDisplacement,
-    double verticalSwipeMinVelocity,
-    double horizontalSwipeMaxHeightThreshold,
-    double horizontalSwipeMinDisplacement,
-    double horizontalSwipeMinVelocity,
+    double? verticalSwipeMaxWidthThreshold,
+    double? verticalSwipeMinDisplacement,
+    double? verticalSwipeMinVelocity,
+    double? horizontalSwipeMaxHeightThreshold,
+    double? horizontalSwipeMinDisplacement,
+    double? horizontalSwipeMinVelocity,
   }) {
     if (verticalSwipeMaxWidthThreshold != null) {
       this.verticalSwipeMaxWidthThreshold = verticalSwipeMaxWidthThreshold;
@@ -49,19 +49,19 @@ class SwipeConfiguration {
 
 class SwipeDetector extends StatelessWidget {
   final Widget child;
-  final Function() onSwipeUp;
-  final Function() onSwipeDown;
-  final Function() onSwipeLeft;
-  final Function() onSwipeRight;
+  final Function()? onSwipeUp;
+  final Function()? onSwipeDown;
+  final Function()? onSwipeLeft;
+  final Function()? onSwipeRight;
   final SwipeConfiguration swipeConfiguration;
 
   SwipeDetector(
-      {@required this.child,
+      {required this.child,
       this.onSwipeUp,
       this.onSwipeDown,
       this.onSwipeLeft,
       this.onSwipeRight,
-      SwipeConfiguration swipeConfiguration})
+      SwipeConfiguration? swipeConfiguration})
       : this.swipeConfiguration = swipeConfiguration == null
             ? SwipeConfiguration()
             : swipeConfiguration;
@@ -69,12 +69,12 @@ class SwipeDetector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Vertical drag details
-    DragStartDetails startVerticalDragDetails;
-    DragUpdateDetails updateVerticalDragDetails;
+    late DragStartDetails startVerticalDragDetails;
+    late DragUpdateDetails updateVerticalDragDetails;
 
     //Horizontal drag details
-    DragStartDetails startHorizontalDragDetails;
-    DragUpdateDetails updateHorizontalDragDetails;
+    late DragStartDetails startHorizontalDragDetails;
+    late DragUpdateDetails updateHorizontalDragDetails;
 
     return GestureDetector(
       child: child,
@@ -89,7 +89,7 @@ class SwipeDetector extends StatelessWidget {
             startVerticalDragDetails.globalPosition.dx;
         double dy = updateVerticalDragDetails.globalPosition.dy -
             startVerticalDragDetails.globalPosition.dy;
-        double velocity = endDetails.primaryVelocity;
+        double velocity = endDetails.primaryVelocity!;
 
         //Convert values to be positive
         if (dx < 0) dx = -dx;
@@ -104,12 +104,12 @@ class SwipeDetector extends StatelessWidget {
         if (velocity < 0) {
           //Swipe Up
           if (onSwipeUp != null) {
-            onSwipeUp();
+            onSwipeUp!();
           }
         } else {
           //Swipe Down
           if (onSwipeDown != null) {
-            onSwipeDown();
+            onSwipeDown!();
           }
         }
       },
@@ -124,7 +124,7 @@ class SwipeDetector extends StatelessWidget {
             startHorizontalDragDetails.globalPosition.dx;
         double dy = updateHorizontalDragDetails.globalPosition.dy -
             startHorizontalDragDetails.globalPosition.dy;
-        double velocity = endDetails.primaryVelocity;
+        double velocity = endDetails.primaryVelocity!;
 
         if (dx < 0) dx = -dx;
         if (dy < 0) dy = -dy;
@@ -138,12 +138,12 @@ class SwipeDetector extends StatelessWidget {
         if (velocity < 0) {
           //Swipe Up
           if (onSwipeLeft != null) {
-            onSwipeLeft();
+            onSwipeLeft!();
           }
         } else {
           //Swipe Down
           if (onSwipeRight != null) {
-            onSwipeRight();
+            onSwipeRight!();
           }
         }
       },
